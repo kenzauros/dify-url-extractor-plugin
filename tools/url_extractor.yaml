@@ -14,21 +14,30 @@ description:
     ja_JP: "URL Extractor Plugin"
   llm: "URL Extractor Plugin"
 parameters:
-  - name: query
+  - name: input
     type: string
     required: true
     label:
-      en_US: Query string
-      zh_Hans: 查询语句
-      pt_BR: Query string
-      ja_JP: クエリ文字列
+      en_US: Input string
+      zh_Hans: 输入字符串
+      ja_JP: 入力文字列
     human_description:
-      en_US: "URL Extractor Plugin"
-      zh_Hans: "URL Extractor Plugin"
-      pt_BR: "URL Extractor Plugin"
-      ja_JP: "URL Extractor Plugin"
-    llm_description: "URL Extractor Plugin"
+      en_US: "Input string includes URLs to extract"
+      zh_Hans: "输入字符串包含要提取的URL"
+      ja_JP: "抽出するURLを含む入力文字列"
+    llm_description: "Input string includes URLs to extract"
     form: llm
+output_schema:
+  type: object
+  properties:
+    urls:
+      type: array
+      description: "抽出されたURLのリスト"
+      items:
+        type: string
+    count:
+      type: integer
+      description: "抽出されたURLの数"
 extra:
   python:
     source: tools/url_extractor.py
